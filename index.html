@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NATIJA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .box-group {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin: 15px auto;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+            width: 100%;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input[type="text"]:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+            outline: none;
+        }
+
+        button {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            margin: 15px auto;
+            display: block;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin: 30px 0;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h3 {
+            color: #34495e;
+            margin: 15px 0;
+            font-weight: 600;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+        }
+
+        #weight-result, #ratio-result {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            font-weight: 600;
+            animation: fadeIn 0.5s ease;
+        }
+
+        hr {
+            margin: 40px auto;
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #4CAF50, transparent);
+            max-width: 500px;
+        }
+
+        .footer {
+            background: white;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-item i {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+
+        .contact-item .fa-phone { background: #4CAF50; }
+        .contact-item .fa-whatsapp { background: #25D366; }
+        .contact-item .fa-facebook { background: #1877F2; }
+        .contact-item .fa-instagram { background: #E4405F; }
+        .contact-item .fa-telegram { background: #0088cc; }
+
+        .contact-text {
+            font-size: 14px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .box-group {
+                padding: 15px;
+                margin: 10px auto;
+            }
+
+            .box {
+                grid-template-columns: 1fr;
+            }
+
+            input[type="text"] {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-item {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        #group1 .box {
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            align-items: center;
+        }
+
+        #group1 input[type="text"] {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>INXAELAH TFR7K NO9TA<3</h1>
+
+        <div class="box-group" id="line1">
+            <h3>LFOROD:</h3>
+            <div class="box">
+                <input type="text" placeholder="FARD 1">
+                <input type="text" placeholder="FARD 2">
+                <input type="text" placeholder="FARD 3">
+                <input type="text" placeholder="FARD 4">
+            </div>
+        </div>
+
+        <div class="box-group" id="line2">
+            <h3>ANCHITA:</h3>
+            <div class="box">
+                <input type="text" placeholder="NO9TAT ANCHITA">
+            </div>
+        </div>
+
+        <button onclick="calculateWeight()">HSSB NO9TAT KOLA MADA</button>
+        <div id="weight-result"></div>
+
+        <hr>
+
+        <div class="box-group" id="group1">
+            <h3>NO9AT DAWRA</h3>
+        </div>
+
+        <button onclick="calculateRatio()">7SSEB NO9TAT DAWRA</button>
+        <div id="ratio-result"></div>
+
+        <div class="footer">
+            <h3>Contact Us</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span class="contact-text">+212661-431963</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <span class="contact-text">+212661-431963</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-facebook"></i>
+                    <span class="contact-text">@endm.ayoub</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <span class="contact-text">@endm_ayoub</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-telegram"></i>
+                    <span class="contact-text">+212661-431963</span>
+                      </div>
+             
+            </div>
+        </div>
+    </div>
+ <h4>All Rights Reserved
+                        ®
+                        Copyright © 2024 </h4>
+    <script>
+        function calculateWeight() {
+            const line1Inputs = document.querySelectorAll('#line1 .box input');
+            const line2Input = document.querySelector('#line2 .box input');
+
+            let totalLine1 = 0;
+            let validInputs = 0;
+
+            line1Inputs.forEach(input => {
+                if (input.value.trim() !== '') {
+                    const value = parseFloat(input.value);
+                    if (!isNaN(value)) {
+                        totalLine1 += value;
+                        validInputs++;
+                    }
+                }
+            });
+
+            const averageLine1 = validInputs > 0 ? (totalLine1 / validInputs) : 0;
+            const weightedLine1 = averageLine1 * 0.75;
+
+            let weightedLine2 = 0;
+            if (line2Input.value.trim() !== '') {
+                const valueLine2 = parseFloat(line2Input.value);
+                if (!isNaN(valueLine2)) {
+                    weightedLine2 = valueLine2 * 0.25;
+                }
+            }
+
+            const finalResult = weightedLine1 + weightedLine2;
+            document.getElementById('weight-result').textContent = `Weight Result: ${finalResult.toFixed(2)}`;
+        }
+
+        function calculateRatio() {
+            let total1 = 0;
+            let totalCoefficients = 0;
+
+            document.querySelectorAll('#group1 .box').forEach(box => {
+                const markInput = box.children[1];
+                const coefficientInput = box.children[2];
+
+                if (markInput.value.trim() !== '' && coefficientInput.value.trim() !== '') {
+                    const mark = parseFloat(markInput.value);
+                    const coefficient = parseFloat(coefficientInput.value);
+                    
+                    if (!isNaN(mark) && !isNaN(coefficient)) {
+                        total1 += mark * coefficient;
+                        totalCoefficients += coefficient;
+                    }
+                }
+            });
+
+            const finalResult = totalCoefficients > 0 ? total1 / totalCoefficients : 0;
+            document.getElementById('ratio-result').textContent = `Group 1 Total: ${finalResult.toFixed(2)}`;
+        }
+
+        function createBoxes(groupId, count) {
+            const group = document.getElementById(groupId);
+
+            for (let i = 0; i < count; i++) {
+                const box = document.createElement('div');
+                box.className = 'box';
+
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.placeholder = `Name ${i + 1}`;
+
+                const markInput = document.createElement('input');
+                markInput.type = 'text';
+                markInput.placeholder = `Mark ${i + 1}`;
+                markInput.dataset.group = groupId;
+
+                const coefficientInput = document.createElement('input');
+                coefficientInput.type = 'text';
+                coefficientInput.placeholder = `Coefficient ${i + 1}`;
+                coefficientInput.dataset.group = groupId;
+
+                box.appendChild(nameInput);
+                box.appendChild(markInput);
+                box.appendChild(coefficientInput);
+                group.appendChild(box);
+            }
+        }
+
+        createBoxes('group1', 14);
+    </script>
+</body>
+</html>
